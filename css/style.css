@@ -39,6 +39,15 @@
     margin-top: 20px;
 
 }
+.fndContainer
+{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+    padding-top: 20px;
+}
 .row
 {
     display: flex;
@@ -104,4 +113,90 @@
   cursor: pointer;
   font-size: 25px;
 
+}
+.fndContainer button
+{
+  border: none;
+  outline: none;
+  background: #0064b5;
+  padding: 6px 30px;
+  border-radius: 5px;
+  color: #bedef7;
+  cursor: pointer;
+  font-size: 15px;
+}
+.fndContainer #delete-btn
+{
+    margin-left: 400px;
+}
+
+.task-list {
+    margin-top: 30px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    color: #bedef7;
+    justify-content: center;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    letter-spacing: 1px;
+
+}
+
+td {
+    background: #0f1729; /* Sama dengan warna input box kamu */
+    color: #bedef7;
+    padding: 15px 10px;
+    font-size: 14px;
+    text-align: center; 
+    word-wrap: break-word;
+}
+
+
+/* Membuat sudut melengkung pada baris tabel */
+td:first-child {
+    border-radius: 10px 0px 0px 10px;
+    border-left: 2px solid #0064b5;
+    border-top: 2px solid #0064b5;
+    border-bottom: 2px solid #0064b5;
+}
+
+td:last-child {
+    border-radius: 0px 10px 10px 0px;
+    border-right: 2px solid #0064b5;
+    border-top: 2px solid #0064b5;
+    border-bottom: 2px solid #0064b5;
+}
+
+td:not(:first-child):not(:last-child) {
+    border-top: 2px solid #0064b5;
+    border-bottom: 2px solid #0064b5;
+}
+
+.empty-row td {
+    text-align: center;
+    padding: 40px;
+    font-style: italic;
+    opacity: 0.6;
+    border: 2px solid #0064b5 !important; 
+    border-radius: 10px !important;
+}
+
+/* Styling untuk tombol di dalam tabel nanti */
+.action-btn {
+    background: #7202db;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
 }

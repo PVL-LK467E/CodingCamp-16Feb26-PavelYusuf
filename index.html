@@ -15,14 +15,36 @@
             <h2>Todo List</h2>
             <div class="rowinputcontainer">
                 <div class="row">
-                    <input type="text" id="input-box" placeholder="Add new Todo">
+                    <input type="text" id="input-box" placeholder="Add new Todo ...">
                 </div>
                 <div class="row2">
                     <input type="date" id="date-picker">
                 </div>
                 <button id="add-btn">+</button>
             </div>
+            <div class="fndContainer">
+                <button id="filter-btn">Filter</button>
+                <button id="delete-btn">Clear all</button>
+            </div>
+            <div class="task-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>TASK</th>
+                            <th>DUE DATE</th>
+                            <th>STATUS</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="todo-body">
+                        <tr class="empty-row">
+                            <td colspan="4">No task found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    <script src="js/script.js"></script>
 </body>
 </html>
