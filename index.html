@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Simple Todo list</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="Todoapp">
-            <h1>Todo List</h1>
-            <div class="row">
-                
+            <h2>Todo List</h2>
+            <div class="rowinputcontainer">
+                <div class="row">
+                    <input type="text" id="input-box" placeholder="Add new Todo">
+                </div>
+                <div class="row2">
+                    <input type="date" id="date-picker">
+                </div>
+                <button id="add-btn">+</button>
             </div>
         </div>
     </div>
