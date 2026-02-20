@@ -4,37 +4,55 @@ const todoBody = document.getElementById("todo-body");
 const addBtn = document.getElementById("add-btn");
 const filterBtn = document.getElementById("filter-btn");
 const deleteBtn = document.getElementById("delete-btn");
-
+const showingText = document.getElementById("filter-text");
+const statusInfo = document.getElementById("status-info");
+let currentFilter = "all";
 let todos = [];
 
-// Fungsi untuk nampilin list ke tabel
-function renderTodos(data = todos) {
-    todoBody.innerHTML = "";
 
-    if (data.length === 0) {
-        todoBody.innerHTML = `
-            <tr class="empty-row">
-                <td colspan="4">No task found</td>
-            </tr>`;
+function renderTodos(data = todos) {
+todoBody.innerHTML = "";
+    
+    
+    let filteredData = todos;
+    if (currentFilter === "pending") filteredData = todos.filter(t => !t.completed);
+    if (currentFilter === "completed") filteredData = todos.filter(t => t.completed);
+
+    
+    showingText.innerText = `Showing ${currentFilter}`;
+
+    
+    if (currentFilter === "all") {
+        statusInfo.style.display = "none"; 
+    } else {
+        statusInfo.style.display = "block"; 
+        const label = currentFilter === "completed" ? "completed task(s)" : "pending task(s)";
+        statusInfo.innerHTML = `<span>${filteredData.length}</span> ${label}`;
+    }
+
+    if (filteredData.length === 0) {
+        todoBody.innerHTML = `<tr class="empty-row"><td colspan="4">No task found</td></tr>`;
         return;
     }
 
-    data.forEach((item, index) => {
+    
+    filteredData.forEach((item) => {
+        const realIndex = todos.indexOf(item); 
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${item.task}</td>
+            <td style="${item.completed ? 'text-decoration: line-through; color: rgba(190, 222, 247, 0.5);' : ''}">${item.task}</td>
             <td>${item.date}</td>
-            <td><span class="status-label">${item.completed ? 'Completed' : 'Pending'}</span></td>
+            <td>${item.completed ? 'Completed' : 'Pending'}</td>
             <td>
-                <button class="action-btn" onclick="toggleStatus(${index})">Done</button>
-                <button class="action-btn" style="background: #ff4d4d;" onclick="deleteTask(${index})">Delete</button>
+                <button class="action-btn" onclick="toggleStatus(${realIndex})">${item.completed ? 'Undo' : 'Done'}</button>
+                <button class="action-btn" style="background: #ff4d4d;" onclick="deleteTask(${realIndex})">Delete</button>
             </td>
         `;
         todoBody.appendChild(row);
     });
 }
 
-// Fungsi Tambah Task & Validasi
+
 addBtn.addEventListener("click", () => {
     const taskValue = inputBox.value.trim();
     const dateValue = datePicker.value;
@@ -55,19 +73,19 @@ addBtn.addEventListener("click", () => {
     renderTodos();
 });
 
-// Fungsi Hapus Satu Task
+
 function deleteTask(index) {
     todos.splice(index, 1);
     renderTodos();
 }
 
-// Fungsi Ganti Status
+
 function toggleStatus(index) {
     todos[index].completed = !todos[index].completed;
     renderTodos();
 }
 
-// Fitur Clear All
+
 deleteBtn.addEventListener("click", () => {
     if (confirm("Are you sure want to clear all todo list?")) {
         todos = [];
@@ -75,16 +93,11 @@ deleteBtn.addEventListener("click", () => {
     }
 });
 
-// Fitur Filter (Menampilkan yang belum selesai saja / toggle)
+
 let isFiltered = false;
 filterBtn.addEventListener("click", () => {
-    isFiltered = !isFiltered;
-    if (isFiltered) {
-        const pendingTasks = todos.filter(t => !t.completed);
-        renderTodos(pendingTasks);
-        filterBtn.innerText = "Show All";
-    } else {
-        renderTodos();
-        filterBtn.innerText = "Filter";
-    }
+    if (currentFilter === "all") currentFilter = "pending";
+    else if (currentFilter === "pending") currentFilter = "completed";
+    else currentFilter = "all";
+    renderTodos();
 });

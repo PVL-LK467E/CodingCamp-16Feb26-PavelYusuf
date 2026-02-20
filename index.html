@@ -23,8 +23,16 @@
                 <button id="add-btn">+</button>
             </div>
             <div class="fndContainer">
-                <button id="filter-btn">Filter</button>
-                <button id="delete-btn">Clear all</button>
+                    <div class="filter-controls">
+                        <div class="filter-row">
+                            <button id="filter-btn">Filter</button>
+                            <span id="filter-text">Showing All</span>
+                        </div>
+                        <div id="status-info" class="status-msg">
+                            <span id="task-count"></span>
+                        </div>
+                    </div>
+                    <button id="delete-btn">Clear all</button>
             </div>
             <div class="task-list">
                 <table>
